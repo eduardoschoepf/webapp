@@ -6,11 +6,38 @@ body {
     background-color: #f4f4f9;
 }
 
+/* Container styles */
+.container {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center horizontally */
+}
+
 /* Header styles */
 h2.h2 {
     color: #333;
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* Add button styles */
+.add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #27ae60;
 }
 
 /* Table styles */
@@ -49,11 +76,21 @@ tbody tr[th\:if="${employees.empty}"] {
     font-style: italic;
 }
 
+/* Table header styles */
+thead th:nth-child(1),
+thead th:nth-child(2) {
+    width: 35%;
+}
+
+thead th:nth-child(3) {
+    width: 30%;
+}
+
 /* Delete button styles */
 .delete-button {
     display: inline-block;
     padding: 8px 16px;
-    margin: 0;
+    margin: 0 5px;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
@@ -68,4 +105,25 @@ tbody tr[th\:if="${employees.empty}"] {
 
 .delete-button:hover {
     background-color: #c0392b;
+}
+
+/* Modify button styles */
+.modify-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modify-button:hover {
+    background-color: #2980b9;
 }
