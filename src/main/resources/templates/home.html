@@ -3,6 +3,7 @@
     
     <head>
         <meta charset="UTF-8">
+        <link th:href="@{/main.css}" rel="stylesheet" />
         <title>Employee Web Application</title>
     </head>
     <body>
@@ -21,9 +22,9 @@
                 <tr th:each="employee: ${employees}">
                     <td><span th:text="${employee.firstName}"> Prénom </span></td>
                     <td><span th:text="${employee.lastName}"> Nom </span></td>
+                    <td><a class="delete-button" th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Supprimer</a></td>
                 </tr>
             </tbody>
         </table>
-       
     </body>
 </html>
