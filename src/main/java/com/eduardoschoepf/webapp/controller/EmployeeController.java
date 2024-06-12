@@ -13,30 +13,53 @@ import org.springframework.ui.Model;
 import com.eduardoschoepf.webapp.model.Employee;
 import com.eduardoschoepf.webapp.service.EmployeeService;
 
+
+import lombok.Data;
+
+@Data
 @Controller
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
-
-    @GetMapping("/")
-    public String home(Model model) {
-        Iterable<Employee> listEmployee = employeeService.getEmployees();
-        model.addAttribute("employees", listEmployee);
-        
-        return "home";
-    }
-
-    @GetMapping("/deleteEmployee/{id}")
-    public ModelAndView deleteEmployee(@PathVariable("id") final int id) {
-        employeeService.deleteEmployee(id);
-        return new ModelAndView("redirect:/");
-    }
-
-    @PostMapping("/saveEmployee")
-    public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
-        employeeService.saveEmployee(employee);
-        return new ModelAndView("redirect:/");
-    }
-
+	@Autowired
+	private EmployeeService service;
+	
+	@GetMapping("/")
+	public String home(Model model) {
+		Iterable<Employee> listEmployee = service.getEmployees();
+		model.addAttribute("employees", listEmployee);
+		return "home";
+	}
+	
+	@GetMapping("/createEmployee")
+	public String createEmployee(Model model) {
+		Employee e = new Employee();
+		model.addAttribute("employee", e);
+		return "formNewEmployee";
+	}
+	
+	@GetMapping("/updateEmployee/{id}")
+	public String updateEmployee(@PathVariable("id") final int id, Model model) {
+		Employee e = service.getEmployee(id);		
+		model.addAttribute("employee", e);	
+		return "formUpdateEmployee";		
+	}
+	
+	@GetMapping("/deleteEmployee/{id}")
+	public ModelAndView deleteEmployee(@PathVariable("id") final int id) {
+		service.deleteEmployee(id);
+		return new ModelAndView("redirect:/");		
+	}
+	
+	@PostMapping("/saveEmployee")
+	public ModelAndView saveEmployee(@ModelAttribute Employee employee) {
+		if(employee.getId() != null) {
+			// Employee from update form has the password field not filled,
+			// so we fill it with the current password.
+			Employee current = service.getEmployee(employee.getId());
+			employee.setPassword(current.getPassword());
+		}
+		service.saveEmployee(employee);
+		return new ModelAndView("redirect:/");	
+	}
+	
 }
