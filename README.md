@@ -10,4 +10,4 @@ The objective is to develop a web application that will enable :
 
 Here's a preview:  
 
-![webapp](https://github.com/eduardoschoepf/webapp/assets/16887540/502c618c-6930-433f-b729-3aa659624baa)
+![webapp](https://github.com/img/employees_webapp.png)
